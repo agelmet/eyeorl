@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ιατρείο Δρυ & Παπαβραμίδου — Οφθαλμίατρος & ΩΡΛ | Πειραιάς</title>
+<meta name="description" content="Χειρ. Οφθαλμίατρος Ξένια Παπαβραμίδου & Χειρ. Ωτορινολαρυγγολόγος Σταμάτιος Δρυς. Σύγχρονο ιατρείο στον Πειραιά, κατόπιν ραντεβού.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal-900:#0c2e36;
+  --teal-800:#103e48;
+  --teal-700:#155562;
+  --teal-600:#1f6f7e;
+  --teal-500:#2f8a99;
+  --teal-glass:#5b9aa4;
+  --teal-glass-2:#74aab2;
+  --eye-blue:#2a7fb8;
+  --eye-blue-deep:#0d4d7a;
+  --nose-warm:#c96f4a;
+  --cream:#f5f1e9;
+  --paper:#fbf9f4;
+  --ink:#0c2e36;
+  --ink-soft:#3a5560;
+  --line:rgba(12,46,54,.12);
+  --gold:#c8a45c;
+  --white:#ffffff;
+  --shadow-lg:0 30px 80px -30px rgba(12,46,54,.45);
+  --shadow-md:0 18px 50px -22px rgba(12,46,54,.35);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Manrope',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--teal-600);color:#fff}
+
+/* ============ PRELOADER ============ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--teal-900);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .8s var(--ease),visibility .8s;
+}
+#preloader.done{opacity:0;visibility:hidden}
+.pre-mark{position:relative;width:120px;height:120px}
+.pre-mark svg{width:100%;height:100%;overflow:visible}
+.pre-ring{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1.2}
+.pre-draw{fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:preDraw 2.2s var(--ease) forwards;}
+.pre-iris{fill:#fff;opacity:0;transform-origin:center;
+  animation:preIris .7s var(--ease) 1.5s forwards;}
+@keyframes preDraw{to{stroke-dashoffset:0}}
+@keyframes preIris{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.pre-label{position:absolute;left:50%;top:calc(100% + 22px);transform:translateX(-50%);
+  font-family:var(--serif);color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.42em;
+  text-transform:uppercase;white-space:nowrap;opacity:0;animation:preFade .8s ease 1.9s forwards}
+@keyframes preFade{to{opacity:1}}
+
+/* ============ NAV ============ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:22px clamp(18px,5vw,64px);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease);
+}
+header.nav.scrolled{
+  background:rgba(251,249,244,.82);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  padding-top:14px;padding-bottom:14px;
+  box-shadow:0 1px 0 var(--line),0 18px 40px -34px rgba(12,46,54,.5);
+}
+.brand{display:flex;align-items:center;gap:13px;cursor:pointer;z-index:5}
+.brand-mark{width:42px;height:42px;flex-shrink:0;transition:transform .6s var(--ease)}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.05)}
+.brand-mark svg{width:100%;height:100%}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-txt b{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--teal-900)}
+header.nav:not(.scrolled):not(.solid) .brand-txt b{color:#fff}
+header.nav:not(.scrolled):not(.solid) .brand-txt span{color:rgba(255,255,255,.7)}
+.brand-txt span{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+
+.nav-right{display:flex;align-items:center;gap:30px;z-index:5}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{font-size:13px;font-weight:600;letter-spacing:.04em;position:relative;padding:4px 0;
+  color:var(--ink);transition:color .3s}
+header.nav:not(.scrolled):not(.solid) .nav-links a{color:rgba(255,255,255,.88)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:0;
+  background:var(--teal-500);transition:width .4s var(--ease)}
+header.nav:not(.scrolled):not(.solid) .nav-links a::after{background:#fff}
+.nav-links a:hover::after{width:100%}
+
+.lang{display:flex;align-items:center;gap:4px;background:rgba(12,46,54,.07);
+  padding:4px;border-radius:30px;border:1px solid var(--line)}
+header.nav:not(.scrolled):not(.solid) .lang{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
+.lang button{border:none;background:transparent;cursor:pointer;width:30px;height:24px;border-radius:20px;
+  display:flex;align-items:center;justify-content:center;transition:.3s;opacity:.5;font-size:14px}
+.lang button.active{background:#fff;opacity:1;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+header.nav:not(.scrolled):not(.solid) .lang button.active{background:rgba(255,255,255,.95)}
+.flag{width:20px;height:14px;border-radius:2px;object-fit:cover;display:block}
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;width:30px;height:24px;
+  justify-content:center;z-index:1200;background:none;border:none}
+.burger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;
+  transition:.45s var(--ease);transform-origin:center}
+header.nav:not(.scrolled):not(.solid) .burger span{background:#fff}
+body.menu-open .burger span{background:var(--ink)}
+body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0;transform:scaleX(0)}
+body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:1100;background:var(--paper);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+  clip-path:circle(0% at calc(100% - 40px) 36px);
+  transition:clip-path .7s var(--ease);pointer-events:none;
+}
+body.menu-open .drawer{clip-path:circle(150% at calc(100% - 40px) 36px);pointer-events:auto}
+.drawer-close{position:absolute;top:24px;right:clamp(18px,5vw,64px);width:46px;height:46px;
+  border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.4s;box-shadow:var(--shadow-md)}
+.drawer-close:hover{transform:rotate(90deg);background:var(--teal-900);border-color:var(--teal-900)}
+.drawer-close svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2;transition:.4s}
+.drawer-close:hover svg{stroke:#fff}
+.drawer a{font-family:var(--serif);font-size:34px;font-weight:500;color:var(--teal-900);
+  padding:8px 0;opacity:0;transform:translateY(20px);transition:.5s var(--ease)}
+body.menu-open .drawer a{opacity:1;transform:translateY(0)}
+body.menu-open .drawer a:nth-child(2){transition-delay:.18s}
+body.menu-open .drawer a:nth-child(3){transition-delay:.26s}
+body.menu-open .drawer a:nth-child(4){transition-delay:.34s}
+body.menu-open .drawer a:nth-child(5){transition-delay:.42s}
+.drawer .dl-sub{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:30px;opacity:0;transition:.5s .5s var(--ease)}
+body.menu-open .drawer .dl-sub{opacity:1}
+
+/* ============ PAGE SYSTEM ============ */
+.page{display:none;animation:pageIn .8s var(--ease)}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* ============ HERO (LANDING) ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;overflow:hidden;padding:120px clamp(18px,5vw,64px) 60px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .layer{position:absolute;inset:0;background-size:cover;background-position:center;
+  will-change:transform}
+.hero-door-l{left:0;width:50%;background-position:center;
+  background-image:linear-gradient(rgba(8,38,46,.55),rgba(8,38,46,.7)),
+    url('https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/20240422_171602%20(2).jpg');
+  transform:scale(1.08)}
+.hero-door-r{right:0;width:50%;left:auto;
+  background-image:linear-gradient(rgba(8,38,46,.55),rgba(8,38,46,.7)),
+    url('https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/20240422_171530%20(2).jpg');
+  transform:scale(1.08)}
+.hero-veil{position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 80% at 50% 30%,transparent,rgba(8,38,46,.45));
+  pointer-events:none}
+.hero-seam{position:absolute;left:50%;top:0;bottom:0;width:1px;z-index:2;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.4) 30%,rgba(255,255,255,.4) 70%,transparent);
+  transform:translateX(-50%)}
+.hero-inner{position:relative;z-index:3;max-width:1180px;margin:0 auto;width:100%;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;color:rgba(255,255,255,.78);
+  font-size:11px;letter-spacing:.42em;text-transform:uppercase;font-weight:600;margin-bottom:24px;
+  opacity:0;transform:translateY(18px)}
+.hero-eyebrow .l{width:34px;height:1px;background:rgba(255,255,255,.4)}
+.hero h1{font-family:var(--serif);color:#fff;font-weight:500;
+  font-size:clamp(2.4rem,6vw,5.2rem);line-height:1.04;letter-spacing:-.01em;margin-bottom:18px}
+.hero h1 .amp{font-style:italic;color:var(--teal-glass-2);font-weight:400}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:block;transform:translateY(110%)}
+.hero-sub{color:rgba(255,255,255,.82);font-size:clamp(1rem,1.6vw,1.18rem);max-width:560px;
+  margin:0 auto 44px;font-weight:300;opacity:0;transform:translateY(18px)}
+
+/* doctor cards on hero */
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,30px);
+  max-width:920px;margin:0 auto}
+.dcard{position:relative;background:rgba(251,249,244,.07);
+  backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);
+  border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:30px 26px;
+  text-align:center;cursor:pointer;overflow:hidden;
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .5s,background .5s;
+  opacity:0;transform:translateY(40px)}
+.dcard::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .6s;
+  background:radial-gradient(120% 100% at 50% 0%,rgba(116,170,178,.3),transparent 60%)}
+.dcard:hover{transform:translateY(-10px);border-color:rgba(255,255,255,.4);
+  background:rgba(251,249,244,.12);box-shadow:0 40px 90px -40px rgba(0,0,0,.7)}
+.dcard:hover::before{opacity:1}
+.dcard-photo{width:128px;height:128px;border-radius:50%;margin:0 auto 18px;overflow:hidden;
+  border:3px solid rgba(255,255,255,.3);position:relative;background:#1a4d57;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.dcard-photo img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.dcard:hover .dcard-photo img{transform:scale(1.08)}
+.dcard-icon{width:34px;height:34px;position:absolute;bottom:2px;right:2px;background:#fff;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);border:2px solid #fff}
+.dcard-icon svg{width:20px;height:20px}
+.dcard h3{font-family:var(--serif);color:#fff;font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:600;
+  line-height:1.1;margin-bottom:6px}
+.dcard .spec{color:var(--teal-glass-2);font-size:13px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;margin-bottom:4px}
+.dcard .spec.spec-blue{color:#7ec5f0}
+.dcard .place{color:rgba(255,255,255,.6);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:20px}
+.dcard .rating{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;
+  background:rgba(255,255,255,.1);padding:6px 14px;border-radius:30px}
+.dcard .rating b{color:#fff;font-size:14px}
+.dcard .rating .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.dcard .rating .cnt{color:rgba(255,255,255,.6);font-size:11.5px}
+.dcard-btn{display:inline-flex;align-items:center;gap:9px;color:#fff;font-size:13px;font-weight:700;
+  letter-spacing:.06em;border:1.5px solid rgba(255,255,255,.5);padding:11px 26px;border-radius:30px;
+  transition:.45s var(--ease);text-transform:uppercase}
+.dcard-btn svg{width:15px;height:15px;transition:transform .45s var(--ease)}
+.dcard:hover .dcard-btn{background:#fff;color:var(--teal-900);border-color:#fff}
+.dcard:hover .dcard-btn svg{transform:translateX(5px)}
+
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.6);
+  font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:cueFade 1s ease 2.6s forwards}
+@keyframes cueFade{to{opacity:1}}
+.scroll-cue .dot{width:1px;height:42px;background:linear-gradient(rgba(255,255,255,.6),transparent);
+  position:relative;overflow:hidden}
+.scroll-cue .dot::after{content:"";position:absolute;top:0;left:0;width:100%;height:14px;
+  background:#fff;animation:cueMove 1.8s var(--ease) infinite}
+@keyframes cueMove{0%{transform:translateY(-14px)}100%{transform:translateY(42px)}}
+
+/* ============ SECTIONS / REVEAL ============ */
+.reveal{opacity:0;transform:translateY(46px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
+
+section{padding:clamp(70px,10vw,130px) clamp(18px,5vw,64px)}
+.wrap{max-width:1180px;margin:0 auto}
+.sec-head{text-align:center;max-width:680px;margin:0 auto clamp(44px,6vw,72px)}
+.kicker{display:inline-flex;align-items:center;gap:11px;color:var(--teal-600);font-size:11px;
+  font-weight:700;letter-spacing:.36em;text-transform:uppercase;margin-bottom:18px}
+.kicker .l{width:28px;height:1px;background:var(--teal-500);opacity:.6}
+h2.title{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.2vw,3.3rem);
+  line-height:1.08;letter-spacing:-.01em;color:var(--teal-900)}
+h2.title em{font-style:italic;color:var(--teal-600);font-weight:400}
+.sec-head p{color:var(--ink-soft);font-size:1.05rem;margin-top:18px;font-weight:300}
+
+/* ============ INTRO / SHARED CLINIC ============ */
+.intro{background:var(--paper);position:relative}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,84px);align-items:center}
+.intro-copy .kicker{margin-bottom:22px}
+.intro-copy h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.9rem);
+  line-height:1.1;color:var(--teal-900);margin-bottom:24px}
+.intro-copy h2 em{font-style:italic;color:var(--teal-600);font-weight:400}
+.intro-copy p{color:var(--ink-soft);font-size:1.05rem;margin-bottom:18px;font-weight:300}
+.intro-stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+.istat b{display:block;font-family:var(--serif);font-size:2.6rem;color:var(--teal-700);font-weight:600;line-height:1}
+.istat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.intro-visual{position:relative}
+.iv-main{border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3;cursor:zoom-in}
+.iv-main img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.iv-main:hover img{transform:scale(1.06)}
+.iv-badge{position:absolute;bottom:-26px;left:-26px;background:var(--teal-900);color:#fff;
+  border-radius:18px;padding:22px 26px;box-shadow:var(--shadow-lg);max-width:230px}
+.iv-badge .ico{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.iv-badge .ico svg{width:22px;height:22px;stroke:#fff}
+.iv-badge b{font-family:var(--serif);font-size:1.15rem;display:block;margin-bottom:4px}
+.iv-badge span{font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.5}
+
+/* ============ MAPS / LOCATIONS ============ */
+.locations{background:linear-gradient(180deg,var(--paper),#eef3f2)}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,36px)}
+.loc-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-md);
+  border:1px solid var(--line);display:flex;flex-direction:column;
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.loc-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.loc-map{position:relative;height:240px;overflow:hidden}
+.loc-map iframe{width:100%;height:100%;border:0;filter:grayscale(.25) contrast(1.02)}
+.loc-tag{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.95);
+  backdrop-filter:blur(6px);padding:8px 16px;border-radius:30px;display:flex;align-items:center;gap:9px;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);font-size:12.5px;font-weight:700;color:var(--teal-900)}
+.loc-tag .d{width:9px;height:9px;border-radius:50%}
+.loc-body{padding:28px 30px 30px}
+.loc-body h3{font-family:var(--serif);font-size:1.5rem;color:var(--teal-900);font-weight:600;margin-bottom:4px}
+.loc-body .role{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:18px}
+.loc-row{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line);
+  font-size:.95rem;color:var(--ink-soft)}
+.loc-row:first-of-type{border-top:none}
+.loc-row svg{width:18px;height:18px;stroke:var(--teal-600);flex-shrink:0;margin-top:3px}
+.loc-row b{color:var(--teal-900);font-weight:600}
+.loc-row a:hover{color:var(--teal-600)}
+.hours-box{background:#f3f7f7;border-radius:14px;padding:16px 18px;margin-top:8px}
+.hours-box .hr{display:flex;justify-content:space-between;font-size:.9rem;padding:5px 0;color:var(--ink-soft)}
+.hours-box .hr b{color:var(--teal-900);font-weight:600}
+.hours-box .hr.closed{color:#b04a4a}
+.hours-note{font-size:.82rem;color:var(--teal-600);font-weight:600;margin-top:8px;display:flex;align-items:center;gap:6px}
+
+/* ============ DETAIL (SUB) PAGES ============ */
+.sub-hero{position:relative;min-height:90svh;display:flex;align-items:flex-end;overflow:hidden;
+  padding:120px clamp(18px,5vw,64px) clamp(48px,7vw,90px)}
+.sub-hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;
+  transform:scale(1.08);will-change:transform}
+.sub-hero-bg.eye{background-image:linear-gradient(120deg,rgba(8,38,60,.78),rgba(13,77,122,.5));
+  background-color:#eef5fb}
+.sub-hero-bg.nose{background-image:linear-gradient(120deg,rgba(6,24,46,.78),rgba(13,77,122,.5))}
+.sub-hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;color:#fff}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.8);font-size:12px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px;cursor:pointer;
+  transition:.4s;opacity:0;transform:translateX(10px)}
+.back-link svg{width:15px;height:15px;transition:transform .4s}
+.back-link:hover{color:#fff}.back-link:hover svg{transform:translateX(-5px)}
+.sub-hero .doc-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);padding:8px 18px;border-radius:30px;
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:24px;
+  opacity:0;transform:translateY(16px)}
+.sub-hero .doc-tag svg{width:16px;height:16px}
+.sub-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.02;
+  margin-bottom:14px}
+.sub-hero h1 .line{display:block;overflow:hidden}
+.sub-hero h1 .line span{display:block;transform:translateY(110%)}
+.sub-hero .lead{font-size:clamp(1.05rem,1.8vw,1.3rem);color:rgba(255,255,255,.85);max-width:540px;
+  font-weight:300;opacity:0;transform:translateY(16px)}
+.sub-hero .hrate{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);padding:9px 18px;border-radius:30px;opacity:0;transform:translateY(16px)}
+.sub-hero .hrate b{color:#fff;font-size:15px}.sub-hero .hrate .stars{color:var(--gold)}
+.sub-hero .hrate span{color:rgba(255,255,255,.65);font-size:12px}
+
+/* profile / bio */
+.bio{background:var(--paper)}
+.bio-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,6vw,80px);align-items:center}
+.bio-photo{position:relative}
+.bio-photo .frame{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:3/3.4;
+  cursor:zoom-in;background:#e8eef0}
+.bio-photo .frame img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 1s var(--ease)}
+.bio-photo .frame:hover img{transform:scale(1.05)}
+.bio-photo .deco{position:absolute;inset:-18px;border:1px solid var(--line);border-radius:30px;z-index:-1}
+.bio-name-tag{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
+  background:#fff;box-shadow:var(--shadow-md);padding:14px 28px;border-radius:14px;text-align:center;
+  white-space:nowrap;border:1px solid var(--line)}
+.bio-name-tag b{font-family:var(--serif);font-size:1.15rem;color:var(--teal-900);display:block}
+.bio-name-tag span{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.bio-copy h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);
+  color:var(--teal-900);line-height:1.12;margin-bottom:22px}
+.bio-copy h2 em{font-style:italic;color:var(--teal-600);font-weight:400}
+.bio-copy p{color:var(--ink-soft);font-size:1.03rem;margin-bottom:16px;font-weight:300}
+.bio-creds{margin-top:28px;display:flex;flex-direction:column;gap:0}
+.cred{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--line)}
+.cred .cn{font-family:var(--serif);font-size:1.3rem;color:var(--teal-600);font-weight:600;min-width:38px}
+.cred b{display:block;color:var(--teal-900);font-size:1rem;margin-bottom:2px}
+.cred span{color:var(--ink-soft);font-size:.92rem;font-weight:300}
+
+/* services */
+.services{background:linear-gradient(180deg,#eef3f2,var(--paper))}
+.services.nose-srv{background:linear-gradient(180deg,#0c2e36,#103e48)}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.serv{background:#fff;border-radius:20px;padding:32px 28px;border:1px solid var(--line);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .4s;position:relative;overflow:hidden}
+.services.nose-srv .serv{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.serv::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--teal-500);transition:width .5s var(--ease)}
+.serv:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);border-color:transparent}
+.services.nose-srv .serv:hover{box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.serv:hover::after{width:100%}
+.serv .si{width:54px;height:54px;border-radius:15px;background:#eef5f6;display:flex;align-items:center;
+  justify-content:center;margin-bottom:20px;transition:.5s}
+.services.nose-srv .serv .si{background:rgba(116,170,178,.15)}
+.serv:hover .si{transform:scale(1.08) rotate(-5deg);background:var(--teal-600)}
+.serv .si svg{width:28px;height:28px;stroke:var(--teal-600);transition:.5s}
+.services.nose-srv .serv .si svg{stroke:#9fd0d8}
+.serv:hover .si svg{stroke:#fff}
+.serv h4{font-family:var(--serif);font-size:1.3rem;color:var(--teal-900);font-weight:600;margin-bottom:9px}
+.services.nose-srv .serv h4{color:#fff}
+.serv p{color:var(--ink-soft);font-size:.95rem;font-weight:300}
+.services.nose-srv .serv p{color:rgba(255,255,255,.65)}
+
+/* diagnostics strip */
+.diag{background:var(--paper)}
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,70px);align-items:center}
+.diag-img{border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);cursor:zoom-in;background:#0a2330}
+.diag-img img{width:100%;display:block;transition:transform 1s var(--ease)}
+.diag-img:hover img{transform:scale(1.04)}
+.diag-copy h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.6rem);
+  color:var(--teal-900);line-height:1.12;margin-bottom:20px}
+.diag-copy h2 em{font-style:italic;color:var(--teal-600);font-weight:400}
+.diag-copy p{color:var(--ink-soft);font-size:1.03rem;font-weight:300;margin-bottom:16px}
+.diag-list{list-style:none;margin-top:20px}
+.diag-list li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;color:var(--ink-soft);font-size:.98rem}
+.diag-list li svg{width:20px;height:20px;stroke:var(--teal-500);flex-shrink:0;margin-top:2px}
+
+/* gallery */
+.gallery{background:linear-gradient(180deg,var(--paper),#eef3f2)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+.gal-item{border-radius:16px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:var(--shadow-md);
+  background:#dde6e8}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,38,46,.5));
+  opacity:0;transition:opacity .5s}
+.gal-item:hover img{transform:scale(1.1)}
+.gal-item:hover::after{opacity:1}
+.gal-item .zoom-ico{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.6);transition:.45s var(--ease)}
+.gal-item:hover .zoom-ico{opacity:1;transform:scale(1)}
+.gal-item .zoom-ico svg{width:18px;height:18px;stroke:var(--teal-900);stroke-width:2}
+.gal-tall{grid-row:span 2}.gal-wide{grid-column:span 2}
+
+/* reviews */
+.reviews{background:var(--teal-900);position:relative;overflow:hidden}
+.reviews::before{content:"";position:absolute;top:-120px;right:-100px;width:420px;height:420px;
+  border-radius:50%;background:radial-gradient(circle,rgba(116,170,178,.18),transparent 70%)}
+.reviews .sec-head .kicker{color:var(--teal-glass-2)}
+.reviews .sec-head .kicker .l{background:var(--teal-glass-2)}
+.reviews h2.title{color:#fff}.reviews h2.title em{color:var(--teal-glass-2)}
+.rev-summary{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:20px;flex-wrap:wrap}
+.rev-score{font-family:var(--serif);font-size:3.4rem;color:#fff;font-weight:600;line-height:1}
+.rev-summary .meta{text-align:left}
+.rev-summary .stars{color:var(--gold);font-size:18px;letter-spacing:2px}
+.rev-summary .meta span{display:block;color:rgba(255,255,255,.6);font-size:13px;margin-top:3px}
+.rev-track-wrap{position:relative;margin-top:54px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.rev-track{display:flex;gap:22px;width:max-content;animation:revScroll 60s linear infinite}
+.rev-track-wrap:hover .rev-track{animation-play-state:paused}
+@keyframes revScroll{to{transform:translateX(-50%)}}
+.rev{width:340px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;padding:28px 26px;backdrop-filter:blur(6px)}
+.rev .top{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.rev .ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--serif);font-size:1.2rem;
+  font-weight:600;flex-shrink:0}
+.rev .who b{color:#fff;font-size:.98rem;display:block}
+.rev .who .gstars{color:var(--gold);font-size:12px;letter-spacing:1px}
+.rev .who .score10{color:var(--teal-glass-2);font-size:11.5px;font-weight:700;margin-left:6px}
+.rev p{color:rgba(255,255,255,.82);font-size:.94rem;font-weight:300;line-height:1.6}
+.rev-more{text-align:center;margin-top:46px}
+.rev-more a{display:inline-flex;align-items:center;gap:10px;color:#fff;font-size:13px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.4);padding:13px 30px;
+  border-radius:30px;transition:.45s var(--ease)}
+.rev-more a svg{width:16px;height:16px}
+.rev-more a:hover{background:#fff;color:var(--teal-900);border-color:#fff}
+
+/* CTA / contact band */
+.contact-band{background:linear-gradient(135deg,var(--teal-800),var(--teal-600));position:relative;overflow:hidden}
+.contact-band::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 120% at 100% 0%,rgba(255,255,255,.1),transparent 50%)}
+.cb-inner{position:relative;z-index:2;text-align:center;max-width:680px;margin:0 auto}
+.cb-inner h2{font-family:var(--serif);color:#fff;font-weight:500;font-size:clamp(2rem,4vw,3.1rem);
+  line-height:1.1;margin-bottom:18px}
+.cb-inner p{color:rgba(255,255,255,.82);font-size:1.08rem;font-weight:300;margin-bottom:36px}
+.cb-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-w{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--teal-900);
+  padding:15px 32px;border-radius:30px;font-size:14px;font-weight:700;letter-spacing:.03em;
+  transition:.45s var(--ease);box-shadow:var(--shadow-md)}
+.btn-w svg{width:18px;height:18px;stroke:var(--teal-900)}
+.btn-w:hover{transform:translateY(-4px);box-shadow:0 24px 50px -20px rgba(0,0,0,.5)}
+.btn-o{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.6);color:#fff;
+  padding:15px 32px;border-radius:30px;font-size:14px;font-weight:700;transition:.45s var(--ease)}
+.btn-o svg{width:18px;height:18px;stroke:#fff}
+.btn-o:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* ============ FOOTER ============ */
+footer{background:var(--teal-900);color:#fff;padding:clamp(60px,8vw,90px) clamp(18px,5vw,64px) 0}
+.foot-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;
+  gap:clamp(34px,5vw,64px);padding-bottom:54px}
+.foot-brand .fb-top{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.foot-brand .fb-mark{width:46px;height:46px}
+.foot-brand .fb-mark svg{width:100%;height:100%}
+.foot-brand b{font-family:var(--serif);font-size:1.4rem;font-weight:600}
+.foot-brand p{color:rgba(255,255,255,.6);font-size:.95rem;font-weight:300;max-width:320px;line-height:1.7}
+.foot-docs{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.foot-doc{display:flex;align-items:center;gap:12px;cursor:pointer;transition:.4s;padding:6px 0}
+.foot-doc:hover{transform:translateX(6px)}
+.foot-doc .fd-ic{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.foot-doc .fd-ic svg{width:20px;height:20px}
+.foot-doc b{font-size:.95rem;font-weight:600;display:block;font-family:var(--sans)}
+.foot-doc span{font-size:11.5px;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.foot-col h5{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-glass-2);
+  font-weight:700;margin-bottom:20px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:13px;color:rgba(255,255,255,.7);font-size:.95rem;font-weight:300;
+  display:flex;gap:10px;align-items:flex-start}
+.foot-col li svg{width:16px;height:16px;stroke:var(--teal-glass-2);flex-shrink:0;margin-top:3px}
+.foot-col a:hover{color:#fff}
+.foot-bottom{max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,.1);
+  padding:26px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.foot-bottom .cp{color:rgba(255,255,255,.45);font-size:12.5px}
+.advon{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);font-size:12.5px;
+  transition:.4s;font-weight:500}
+.advon:hover{color:#fff}
+.advon b{color:var(--teal-glass-2);font-weight:700}
+.advon:hover b{color:#fff}
+
+/* ============ LIGHTBOX ============ */
+.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(6,24,30,.94);
+  display:flex;align-items:center;justify-content:center;padding:40px;
+  opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6);
+  transform:scale(.9);transition:transform .5s var(--ease)}
+.lightbox.open img{transform:scale(1)}
+.lb-close{position:absolute;top:26px;right:30px;width:50px;height:50px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.4s}
+.lb-close:hover{background:#fff;transform:rotate(90deg)}
+.lb-close svg{width:22px;height:22px;stroke:#fff;stroke-width:2;transition:.4s}
+.lb-close:hover svg{stroke:var(--teal-900)}
+.lb-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+/* progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1500;
+  background:linear-gradient(90deg,var(--teal-500),var(--teal-glass-2))}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .intro-grid,.bio-grid,.diag-grid{grid-template-columns:1fr;gap:48px}
+  .iv-badge{position:relative;bottom:auto;left:auto;margin-top:24px;max-width:100%}
+  .serv-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-wide{grid-column:span 2}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:1/-1}
+}
+@media(max-width:680px){
+  .hero{padding-top:100px}
+  .hero-cards{grid-template-columns:1fr;max-width:420px;gap:18px}
+  .hero-bg .layer{width:100%!important;left:0!important;right:auto!important}
+  .hero-door-r{display:none}
+  .hero-seam{display:none}
+  .loc-grid{grid-template-columns:1fr}
+  .serv-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+  .gal-wide,.gal-tall{grid-column:span 1;grid-row:span 1}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .cb-actions{flex-direction:column}
+  .btn-w,.btn-o{justify-content:center}
+  .intro-stats{gap:24px}
+  .rev{width:280px}
+}
+/* Bilingual handled via JS innerHTML/textContent swap (single-element pattern). No display toggling. */
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-mark">
+    <svg viewBox="0 0 100 100">
+      <circle class="pre-ring" cx="50" cy="50" r="46"/>
+      <path class="pre-draw" d="M10,50 C25,28 75,28 90,50 C75,72 25,72 10,50 Z"/>
+      <circle class="pre-iris" cx="50" cy="50" r="11"/>
+      <circle cx="50" cy="50" r="4.5" fill="#0c2e36"/>
+    </svg>
+    <span class="pre-label" data-el="Ιατρείο Δρυ & Παπαβραμίδου" data-en="Drys & Papavramidou Practice">Ιατρείο Δρυ &amp; Παπαβραμίδου</span>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="brand" onclick="goPage('home')">
+    <div class="brand-mark">
+      <!-- combined eye + profile mark -->
+      <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="27" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="1"/>
+        <path d="M9,28 C16,18 40,18 47,28 C40,38 16,38 9,28 Z" fill="none" stroke="#2f8a99" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="28" cy="28" r="7" fill="#1f6f7e"/>
+        <circle cx="28" cy="28" r="2.6" fill="#fbf9f4"/>
+        <path d="M33,20 q9,8 0,16" fill="none" stroke="#c8a45c" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+      </svg>
+    </div>
+    <div class="brand-txt">
+      <b data-el="Δρυς &amp; Παπαβραμίδου" data-en="Drys &amp; Papavramidou">Δρυς &amp; Παπαβραμίδου</b>
+      <span data-el="ΟΦΘΑΛΜΙΑΤΡΟΣ · ΩΡΛ · ΠΕΙΡΑΙΑΣ" data-en="OPHTHALMOLOGY · ENT · PIRAEUS">ΟΦΘΑΛΜΙΑΤΡΟΣ · ΩΡΛ · ΠΕΙΡΑΙΑΣ</span>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="goPage('home');return false" data-el="Αρχική" data-en="Home">Αρχική</a></li>
+      <li><a href="#" onclick="goPage('papavramidou');return false" data-el="Οφθαλμίατρος" data-en="Ophthalmology">Οφθαλμίατρος</a></li>
+      <li><a href="#" onclick="goPage('drys');return false" data-el="Ωτορινολαρυγγολόγος" data-en="ENT">Ωτορινολαρυγγολόγος</a></li>
+      <li><a href="#" onclick="scrollToId('locations');return false" data-el="Τοποθεσίες" data-en="Locations">Τοποθεσίες</a></li>
+    </ul>
+    <div class="lang">
+      <button id="btnEl" class="active" onclick="setLang('el')" aria-label="Ελληνικά">
+        <img class="flag" alt="EL" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 18'><rect width='27' height='18' fill='%23005bae'/><g fill='%23fff'><rect y='2' width='27' height='2'/><rect y='6' width='27' height='2'/><rect y='10' width='27' height='2'/><rect y='14' width='27' height='2'/></g><rect width='10' height='10' fill='%23005bae'/><rect x='4' width='2' height='10' fill='%23fff'/><rect y='4' width='10' height='2' fill='%23fff'/></svg>"/>
+      </button>
+      <button id="btnEn" onclick="setLang('en')" aria-label="English">
+        <img class="flag" alt="EN" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'><clipPath id='s'><path d='M0,0 v30 h60 v-30 z'/></clipPath><clipPath id='t'><path d='M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z'/></clipPath><g clip-path='url(%23s)'><path d='M0,0 v30 h60 v-30 z' fill='%23012169'/><path d='M0,0 L60,30 M60,0 L0,30' stroke='%23fff' stroke-width='6'/><path d='M0,0 L60,30 M60,0 L0,30' clip-path='url(%23t)' stroke='%23C8102E' stroke-width='4'/><path d='M30,0 v30 M0,15 h60' stroke='%23fff' stroke-width='10'/><path d='M30,0 v30 M0,15 h60' stroke='%23C8102E' stroke-width='6'/></g></svg>"/>
+      </button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<nav class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+  </button>
+  <a href="#" onclick="goPage('home');closeMenu();return false" data-el="Αρχική" data-en="Home">Αρχική</a>
+  <a href="#" onclick="goPage('papavramidou');closeMenu();return false" data-el="Οφθαλμίατρος" data-en="Ophthalmology">Οφθαλμίατρος</a>
+  <a href="#" onclick="goPage('drys');closeMenu();return false" data-el="Ωτορινολαρυγγολόγος" data-en="ENT">Ωτορινολαρυγγολόγος</a>
+  <a href="#" onclick="scrollToId('locations');closeMenu();return false" data-el="Τοποθεσίες" data-en="Locations">Τοποθεσίες</a>
+  <span class="dl-sub" data-el="ΠΕΙΡΑΙΑΣ · ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ" data-en="PIRAEUS · BY APPOINTMENT">ΠΕΙΡΑΙΑΣ · ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ</span>
+</nav>
+
+<!-- ====================================================== -->
+<!-- ====================  HOME PAGE  ===================== -->
+<!-- ====================================================== -->
+<main id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="layer hero-door-l" data-depth="0.18"></div>
+      <div class="layer hero-door-r" data-depth="0.14"></div>
+    </div>
+    <div class="hero-veil"></div>
+    <div class="hero-seam"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow" id="heroEb"><span class="l"></span><span data-el="Ιατρείο στον Πειραιά" data-en="Medical practice in Piraeus">Ιατρείο στον Πειραιά</span><span class="l"></span></div>
+      <h1>
+        <span class="line"><span data-el="Δύο ειδικότητες," data-en="Two specialties,">Δύο ειδικότητες,</span></span>
+        <span class="line"><span><em class="amp" data-el="ένας" data-en="one">ένας</em> <span data-el="χώρος φροντίδας" data-en="space of care">χώρος φροντίδας</span></span></span>
+      </h1>
+      <p class="hero-sub" id="heroSub" data-el="Χειρουργός Οφθαλμίατρος & Χειρουργός Ωτορινολαρυγγολόγος. Σύγχρονη διάγνωση, ανθρώπινη προσέγγιση — στην καρδιά του Πειραιά." data-en="Surgical Ophthalmologist & ENT Surgeon. Modern diagnostics, a human approach — in the heart of Piraeus.">Χειρουργός Οφθαλμίατρος &amp; Χειρουργός Ωτορινολαρυγγολόγος. Σύγχρονη διάγνωση, ανθρώπινη προσέγγιση — στην καρδιά του Πειραιά.</p>
+
+      <div class="hero-cards">
+        <!-- Papavramidou -->
+        <div class="dcard" id="hc1" onclick="goPage('papavramidou')">
+          <div class="dcard-photo">
+            <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/02f9ffbd-0d14-40a4-af98-68427ac0a392.jpg" alt="Ξένια Παπαβραμίδου">
+            <div class="dcard-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M2,12 C5,7 19,7 22,12 C19,17 5,17 2,12 Z" stroke="#1f6f7e" stroke-width="1.8"/><circle cx="12" cy="12" r="3.4" fill="#1f6f7e"/></svg>
+            </div>
+          </div>
+          <div class="spec spec-blue" data-el="Χειρ. Οφθαλμίατρος" data-en="Ophthalmic Surgeon">Χειρ. Οφθαλμίατρος</div>
+          <h3 data-el="Ξένια Παπαβραμίδου" data-en="Xenia Papavramidou">Ξένια Παπαβραμίδου</h3>
+          <div class="place" data-el="MD · ΠΕΙΡΑΙΑΣ" data-en="MD · PIRAEUS">MD · ΠΕΙΡΑΙΑΣ</div>
+          <div class="rating">
+            <span class="stars">★★★★★</span><b>9.9</b><span class="cnt" data-el="52 αξιολογήσεις" data-en="52 reviews">52 αξιολογήσεις</span>
+          </div>
+          <div><span class="dcard-btn" data-el="Περισσότερα" data-en="Discover">Περισσότερα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        </div>
+        <!-- Drys -->
+        <div class="dcard" id="hc2" onclick="goPage('drys')">
+          <div class="dcard-photo">
+            <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/δρυσ-σταματιοσ.png" alt="Σταμάτιος Δρυς">
+            <div class="dcard-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8,4 C6,8 5,12 6,16 C7,19 11,20 12,17 C12.5,15.5 14,15 15,15" stroke="#1f6f7e" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="8.5" cy="13" r="1.2" fill="#1f6f7e"/></svg>
+            </div>
+          </div>
+          <div class="spec" data-el="Χειρ. Ωτορινολαρυγγολόγος" data-en="ENT Surgeon">Χειρ. Ωτορινολαρυγγολόγος</div>
+          <h3 data-el="Σταμάτιος Δρυς" data-en="Stamatios Drys">Σταμάτιος Δρυς</h3>
+          <div class="place" data-el="MD · ΠΕΙΡΑΙΑΣ" data-en="MD · PIRAEUS">MD · ΠΕΙΡΑΙΑΣ</div>
+          <div class="rating">
+            <span class="stars">★★★★★</span><b>5.0</b><span class="cnt" data-el="Google αξιολογήσεις" data-en="Google reviews">Google αξιολογήσεις</span>
+          </div>
+          <div><span class="dcard-btn" data-el="Περισσότερα" data-en="Discover">Περισσότερα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span data-el="Εξερευνήστε" data-en="Scroll">Εξερευνήστε</span><span class="dot"></span></div>
+  </section>
+
+  <!-- INTRO / SHARED CLINIC -->
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <div class="intro-copy">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Το ιατρείο" data-en="The practice">Το ιατρείο</span></div>
+        <h2 class="reveal reveal-d1" data-el="Δύο κορυφαίοι ειδικοί, <em>κάτω από την ίδια στέγη</em>" data-en="Two leading specialists, <em>under one roof</em>">Δύο κορυφαίοι ειδικοί, <em>κάτω από την ίδια στέγη</em></h2>
+        <p class="reveal reveal-d2" data-el="Στον Πειραιά, η Οφθαλμίατρος Ξένια Παπαβραμίδου και ο Ωτορινολαρυγγολόγος Σταμάτιος Δρυς μοιράζονται έναν φιλόξενο, σύγχρονο χώρο. Δύο διακριτές ειδικότητες που συναντιούνται στην ίδια φιλοσοφία: σωστή διάγνωση, σεβασμός στον χρόνο σας και ανθρώπινη φροντίδα." data-en="In Piraeus, Ophthalmologist Xenia Papavramidou and ENT specialist Stamatios Drys share one warm, modern space. Two distinct specialties meeting in a single philosophy: accurate diagnosis, respect for your time, and genuinely human care.">Στον Πειραιά, η Οφθαλμίατρος Ξένια Παπαβραμίδου και ο Ωτορινολαρυγγολόγος Σταμάτιος Δρυς μοιράζονται έναν φιλόξενο, σύγχρονο χώρο. Δύο διακριτές ειδικότητες που συναντιούνται στην ίδια φιλοσοφία: σωστή διάγνωση, σεβασμός στον χρόνο σας και ανθρώπινη φροντίδα.</p>
+        <div class="intro-stats">
+          <div class="istat reveal reveal-d2"><b>2</b><span data-el="Ειδικότητες" data-en="Specialties">Ειδικότητες</span></div>
+          <div class="istat reveal reveal-d3"><b>9.9</b><span data-el="Μ.Ο. αξιολόγησης" data-en="Avg. rating">Μ.Ο. αξιολόγησης</span></div>
+          <div class="istat reveal reveal-d4"><b>60+</b><span data-el="Αξιολογήσεις" data-en="Patient reviews">Αξιολογήσεις</span></div>
+        </div>
+      </div>
+      <div class="intro-visual reveal reveal-d2">
+        <div class="iv-main lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg">
+          <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg" alt="Χώρος αναμονής ιατρείου">
+        </div>
+        <div class="iv-badge">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <b data-el="Φιλόξενος χώρος" data-en="A welcoming space">Φιλόξενος χώρος</b>
+          <span data-el="Άνετη αναμονή & σύγχρονος ιατρικός εξοπλισμός" data-en="Comfortable waiting & modern medical equipment">Άνετη αναμονή &amp; σύγχρονος ιατρικός εξοπλισμός</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS / MAPS -->
+  <section class="locations" id="locations">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Επικοινωνία" data-en="Find us">Επικοινωνία</span><span class="l"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Πού θα μας <em>βρείτε</em>" data-en="Where to <em>find us</em>">Πού θα μας <em>βρείτε</em></h2>
+        <p class="reveal reveal-d2" data-el="Δύο ιατρεία στον Πειραιά. Επιλέξτε τον ειδικό σας και κλείστε ραντεβού." data-en="Two practices in Piraeus. Choose your specialist and book your appointment.">Δύο ιατρεία στον Πειραιά. Επιλέξτε τον ειδικό σας και κλείστε ραντεβού.</p>
+      </div>
+
+      <div class="loc-grid">
+        <!-- Papavramidou loc -->
+        <div class="loc-card reveal reveal-d1">
+          <div class="loc-map">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Praxitelous+121+Piraeus&output=embed"></iframe>
+            <div class="loc-tag"><span class="d" style="background:#2a7fb8"></span><span data-el="Οφθαλμίατρος" data-en="Ophthalmology">Οφθαλμίατρος</span></div>
+          </div>
+          <div class="loc-body">
+            <h3 data-el="Ξένια Παπαβραμίδου" data-en="Xenia Papavramidou">Ξένια Παπαβραμίδου</h3>
+            <div class="role" style="color:#2a7fb8" data-el="Χειρουργός Οφθαλμίατρος" data-en="Ophthalmic Surgeon">Χειρουργός Οφθαλμίατρος</div>
+            <div class="loc-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Πραξιτέλους 121</b>, <span data-el="Πειραιάς" data-en="Piraeus">Πειραιάς</span></span></div>
+            <div class="loc-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16v16H4z" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 6l-10 7L2 6" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="mailto:xeniapapavra@gmail.com">xeniapapavra@gmail.com</a></div>
+            <div class="loc-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:+302104126386"><b>210 412 6386</b></a></div>
+            <div class="hours-box">
+              <div class="hr"><span data-el="Δευτέρα – Παρασκευή" data-en="Monday – Friday">Δευτέρα – Παρασκευή</span><b>16:00 – 21:00</b></div>
+              <div class="hr closed"><span data-el="Σάββατο & Κυριακή" data-en="Saturday & Sunday">Σάββατο &amp; Κυριακή</span><b data-el="Κλειστά" data-en="Closed">Κλειστά</b></div>
+              <div class="hours-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span data-el="Κατόπιν ραντεβού" data-en="By appointment">Κατόπιν ραντεβού</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drys loc -->
+        <div class="loc-card reveal reveal-d2">
+          <div class="loc-map">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Praxitelous+121+Piraeus&output=embed"></iframe>
+            <div class="loc-tag"><span class="d" style="background:#1f6f7e"></span><span data-el="ΩΡΛ" data-en="ENT">ΩΡΛ</span></div>
+          </div>
+          <div class="loc-body">
+            <h3 data-el="Σταμάτιος Δρυς" data-en="Stamatios Drys">Σταμάτιος Δρυς</h3>
+            <div class="role" style="color:#1f6f7e" data-el="Χειρουργός Ωτορινολαρυγγολόγος" data-en="ENT Surgeon">Χειρουργός Ωτορινολαρυγγολόγος</div>
+            <div class="loc-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Πραξιτέλους 121</b>, <span data-el="Πειραιάς" data-en="Piraeus">Πειραιάς</span></span></div>
+            <div class="loc-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:+302104126388"><b>210 412 6388</b></a></div>
+            <div class="hours-box">
+              <div class="hr"><span data-el="Δευτέρα – Παρασκευή" data-en="Monday – Friday">Δευτέρα – Παρασκευή</span><b>16:00 – 21:00</b></div>
+              <div class="hr closed"><span data-el="Σάββατο & Κυριακή" data-en="Saturday & Sunday">Σάββατο &amp; Κυριακή</span><b data-el="Κλειστά" data-en="Closed">Κλειστά</b></div>
+              <div class="hours-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span data-el="Κατόπιν ραντεβού" data-en="By appointment">Κατόπιν ραντεβού</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (home) -->
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fb-top">
+          <div class="fb-mark">
+            <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="27" fill="none" stroke="#74aab2" stroke-opacity=".4" stroke-width="1"/>
+              <path d="M9,28 C16,18 40,18 47,28 C40,38 16,38 9,28 Z" fill="none" stroke="#74aab2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="28" cy="28" r="7" fill="#74aab2"/><circle cx="28" cy="28" r="2.6" fill="#0c2e36"/>
+            </svg>
+          </div>
+          <b data-el="Δρυς &amp; Παπαβραμίδου" data-en="Drys &amp; Papavramidou">Δρυς &amp; Παπαβραμίδου</b>
+        </div>
+        <p data-el="Ιατρείο Οφθαλμολογίας & Ωτορινολαρυγγολογίας στον Πειραιά. Δύο ειδικότητες, μία φιλοσοφία φροντίδας." data-en="Ophthalmology & ENT practice in Piraeus. Two specialties, one philosophy of care.">Ιατρείο Οφθαλμολογίας &amp; Ωτορινολαρυγγολογίας στον Πειραιά. Δύο ειδικότητες, μία φιλοσοφία φροντίδας.</p>
+        <div class="foot-docs">
+          <div class="foot-doc" onclick="goPage('papavramidou')">
+            <div class="fd-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M2,12 C5,7 19,7 22,12 C19,17 5,17 2,12 Z" stroke="#7ec5f0" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="#7ec5f0"/></svg></div>
+            <div><b data-el="Ξένια Παπαβραμίδου" data-en="Xenia Papavramidou">Ξένια Παπαβραμίδου</b><span data-el="Χειρ. Οφθαλμίατρος" data-en="Ophthalmic Surgeon">Χειρ. Οφθαλμίατρος</span></div>
+          </div>
+          <div class="foot-doc" onclick="goPage('drys')">
+            <div class="fd-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M8,4 C6,8 5,12 6,16 C7,19 11,20 12,17" stroke="#9fd0d8" stroke-width="1.8" stroke-linecap="round"/><circle cx="8.5" cy="13" r="1.2" fill="#9fd0d8"/></svg></div>
+            <div><b data-el="Σταμάτιος Δρυς" data-en="Stamatios Drys">Σταμάτιος Δρυς</b><span data-el="Χειρ. Ωτορινολαρυγγολόγος" data-en="ENT Surgeon">Χειρ. Ωτορινολαρυγγολόγος</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z" stroke-linecap="round"/><circle cx="12" cy="10" r="2.5"/></svg><span data-el="Πραξιτέλους 121, Πειραιάς" data-en="121 Praxitelous St, Piraeus">Πραξιτέλους 121, Πειραιάς</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg><a href="tel:+302104126386" data-el="Παπαβραμίδου · 210 412 6386" data-en="Papavramidou · 210 412 6386">Παπαβραμίδου · 210 412 6386</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg><a href="tel:+302104126388" data-el="Δρυς · 210 412 6388" data-en="Drys · 210 412 6388">Δρυς · 210 412 6388</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Ωράριο" data-en="Hours">Ωράριο</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span data-el="Δευτέρα – Παρασκευή: 16:00 – 21:00" data-en="Monday – Friday: 16:00 – 21:00">Δευτέρα – Παρασκευή: 16:00 – 21:00</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8" stroke-linecap="round"/></svg><span data-el="Σάββατο & Κυριακή: Κλειστά" data-en="Saturday & Sunday: Closed">Σάββατο &amp; Κυριακή: Κλειστά</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-linecap="round"/></svg><span data-el="Κατόπιν ραντεβού" data-en="By appointment only">Κατόπιν ραντεβού</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="cp">© <span id="yr1"></span> <span data-el="Ιατρείο Δρυ & Παπαβραμίδου. Με επιφύλαξη παντός δικαιώματος." data-en="Drys & Papavramidou Practice. All rights reserved.">Ιατρείο Δρυ &amp; Παπαβραμίδου. Με επιφύλαξη παντός δικαιώματος.</span></span>
+      <a class="advon" href="https://www.advonmedia.com" target="_blank" rel="noopener">Designed by <b>Advon Media</b></a>
+    </div>
+  </footer>
+</main>
+
+<!-- ====================================================== -->
+<!-- ================  PAPAVRAMIDOU PAGE  ================= -->
+<!-- ====================================================== -->
+<main id="page-papavramidou" class="page">
+
+  <section class="sub-hero">
+    <div class="sub-hero-bg eye" style="background-image:linear-gradient(110deg,rgba(8,38,60,.82),rgba(13,77,122,.45)),url('https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/eye%20(2)%20(1).webp')" data-depth="0.12"></div>
+    <div class="sub-hero-inner">
+      <span class="back-link reveal-h" onclick="goPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg> <span data-el="Πίσω στο ιατρείο" data-en="Back to practice">Πίσω στο ιατρείο</span></span>
+      <div class="doc-tag reveal-h">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M2,12 C5,7 19,7 22,12 C19,17 5,17 2,12 Z" stroke="#7ec5f0" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="#7ec5f0"/></svg>
+        <span data-el="Χειρουργός Οφθαλμίατρος" data-en="Ophthalmic Surgeon">Χειρουργός Οφθαλμίατρος</span>
+      </div>
+      <h1>
+        <span class="line"><span data-el="Ξένια" data-en="Xenia">Ξένια</span></span>
+        <span class="line"><span data-el="Παπαβραμίδου" data-en="Papavramidou">Παπαβραμίδου</span> <span style="font-size:.4em;vertical-align:middle;color:rgba(255,255,255,.55);letter-spacing:.1em">MD</span></span>
+      </h1>
+      <p class="lead reveal-h" data-el="Ολοκληρωμένη οφθαλμολογική φροντίδα για όλη την οικογένεια — με σύγχρονη τεχνολογία και προσοχή στη λεπτομέρεια." data-en="Complete ophthalmic care for the whole family — with modern technology and attention to detail.">Ολοκληρωμένη οφθαλμολογική φροντίδα για όλη την οικογένεια — με σύγχρονη τεχνολογία και προσοχή στη λεπτομέρεια.</p>
+      <div class="hrate reveal-h"><span class="stars">★★★★★</span><b>9.9</b><span data-el="· 52 αξιολογήσεις" data-en="· 52 reviews">· 52 αξιολογήσεις</span></div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <div class="wrap bio-grid">
+      <div class="bio-photo reveal">
+        <div class="deco"></div>
+        <div class="frame lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/02f9ffbd-0d14-40a4-af98-68427ac0a392.jpg">
+          <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/02f9ffbd-0d14-40a4-af98-68427ac0a392.jpg" alt="Ξένια Παπαβραμίδου">
+        </div>
+        <div class="bio-name-tag">
+          <b data-el="Ξένια Παπαβραμίδου MD" data-en="Xenia Papavramidou MD">Ξένια Παπαβραμίδου MD</b>
+          <span style="color:#2a7fb8" data-el="ΧΕΙΡΟΥΡΓΟΣ ΟΦΘΑΛΜΙΑΤΡΟΣ" data-en="OPHTHALMIC SURGEON">ΧΕΙΡΟΥΡΓΟΣ ΟΦΘΑΛΜΙΑΤΡΟΣ</span>
+        </div>
+      </div>
+      <div class="bio-copy">
+        <div class="kicker reveal" style="color:#2a7fb8"><span class="l" style="background:#2a7fb8"></span><span data-el="Βιογραφικό" data-en="About">Βιογραφικό</span></div>
+        <h2 class="reveal reveal-d1" data-el="Η όραση είναι <em>πολύτιμη</em>" data-en="Vision is <em>precious</em>">Η όραση είναι <em>πολύτιμη</em></h2>
+        <p class="reveal reveal-d2" data-el="Η Ξένια Παπαβραμίδου είναι Χειρουργός Οφθαλμίατρος με έδρα τον Πειραιά. Συνδυάζει την κλινική εμπειρία με τη σύγχρονη διαγνωστική τεχνολογία, προσφέροντας ολοκληρωμένη φροντίδα για ενήλικες και παιδιά." data-en="Xenia Papavramidou is an Ophthalmic Surgeon based in Piraeus. She combines clinical experience with modern diagnostic technology, offering comprehensive care for adults and children alike.">Η Ξένια Παπαβραμίδου είναι Χειρουργός Οφθαλμίατρος με έδρα τον Πειραιά. Συνδυάζει την κλινική εμπειρία με τη σύγχρονη διαγνωστική τεχνολογία, προσφέροντας ολοκληρωμένη φροντίδα για ενήλικες και παιδιά.</p>
+        <p class="reveal reveal-d2" data-el="Με υπομονή, σαφήνεια και ειλικρινή ενημέρωση σε κάθε βήμα, στόχος της είναι να νιώθετε σιγουριά για την υγεία των ματιών σας — από την πρώτη εξέταση έως τη θεραπεία." data-en="With patience, clarity and honest guidance at every step, her goal is for you to feel confident about your eye health — from the first examination to treatment.">Με υπομονή, σαφήνεια και ειλικρινή ενημέρωση σε κάθε βήμα, στόχος της είναι να νιώθετε σιγουριά για την υγεία των ματιών σας — από την πρώτη εξέταση έως τη θεραπεία.</p>
+        <div class="bio-creds">
+          <div class="cred reveal reveal-d2"><span class="cn">01</span><div><b data-el="Χειρουργός Οφθαλμίατρος" data-en="Ophthalmic Surgeon">Χειρουργός Οφθαλμίατρος</b><span data-el="Πλήρης οφθαλμολογική εξέταση & χειρουργική" data-en="Full ophthalmic examination & surgery">Πλήρης οφθαλμολογική εξέταση &amp; χειρουργική</span></div></div>
+          <div class="cred reveal reveal-d3"><span class="cn">02</span><div><b data-el="Παιδοοφθαλμολογία" data-en="Pediatric Ophthalmology">Παιδοοφθαλμολογία</b><span data-el="Εξειδίκευση στον έλεγχο όρασης παιδιών" data-en="Specialized pediatric vision screening">Εξειδίκευση στον έλεγχο όρασης παιδιών</span></div></div>
+          <div class="cred reveal reveal-d4"><span class="cn">03</span><div><b data-el="Σύγχρονη διάγνωση" data-en="Modern diagnostics">Σύγχρονη διάγνωση</b><span data-el="OCT, διαθλαστικός έλεγχος & βυθοσκόπηση" data-en="OCT, refraction tests & fundoscopy">OCT, διαθλαστικός έλεγχος &amp; βυθοσκόπηση</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal" style="color:#2a7fb8"><span class="l" style="background:#2a7fb8"></span><span data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</span><span class="l" style="background:#2a7fb8"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Ολοκληρωμένη <em>οφθαλμολογική φροντίδα</em>" data-en="Comprehensive <em>eye care</em>">Ολοκληρωμένη <em>οφθαλμολογική φροντίδα</em></h2>
+      </div>
+      <div class="serv-grid">
+        <div class="serv reveal reveal-d1">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M2,12 C5,7 19,7 22,12 C19,17 5,17 2,12 Z" stroke-linecap="round"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+          <h4 data-el="Πλήρης οφθαλμολογικός έλεγχος" data-en="Complete eye examination">Πλήρης οφθαλμολογικός έλεγχος</h4>
+          <p data-el="Ολοκληρωμένη εξέταση όρασης και υγείας των ματιών για ενήλικες." data-en="Complete vision and eye-health examination for adults.">Ολοκληρωμένη εξέταση όρασης και υγείας των ματιών για ενήλικες.</p>
+        </div>
+        <div class="serv reveal reveal-d2">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/><path d="M17 9l2 2 3-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4 data-el="Παιδοοφθαλμολογικός έλεγχος" data-en="Pediatric eye screening">Παιδοοφθαλμολογικός έλεγχος</h4>
+          <p data-el="Έγκαιρος έλεγχος όρασης για παιδιά, με φιλική και ήρεμη προσέγγιση." data-en="Early vision screening for children, with a friendly, calm approach.">Έγκαιρος έλεγχος όρασης για παιδιά, με φιλική και ήρεμη προσέγγιση.</p>
+        </div>
+        <div class="serv reveal reveal-d3">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 12h4l2-7 4 14 2-7h6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4 data-el="Διόρθωση όρασης με Laser" data-en="Laser vision correction">Διόρθωση όρασης με Laser</h4>
+          <p data-el="Διόρθωση μυωπίας, υπερμετρωπίας και αστιγματισμού με laser." data-en="Correction of myopia, hyperopia and astigmatism with laser.">Διόρθωση μυωπίας, υπερμετρωπίας και αστιγματισμού με laser.</p>
+        </div>
+        <div class="serv reveal reveal-d1">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke-linecap="round"/></svg></div>
+          <h4 data-el="Επεμβάσεις καταρράκτη" data-en="Cataract surgery">Επεμβάσεις καταρράκτη</h4>
+          <p data-el="Σύγχρονη αντιμετώπιση καταρράκτη με premium ενδοφακούς (EDOF – πολυεστιακούς)." data-en="Modern cataract treatment with premium intraocular lenses (EDOF – multifocal).">Σύγχρονη αντιμετώπιση καταρράκτη με premium ενδοφακούς (EDOF – πολυεστιακούς).</p>
+        </div>
+        <div class="serv reveal reveal-d2">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"/><circle cx="19" cy="18" r="2"/></svg></div>
+          <h4 data-el="Διαθλαστικός έλεγχος" data-en="Refraction testing">Διαθλαστικός έλεγχος</h4>
+          <p data-el="Ακριβής μέτρηση διάθλασης για γυαλιά και φακούς επαφής." data-en="Precise refraction measurement for glasses and contact lenses.">Ακριβής μέτρηση διάθλασης για γυαλιά και φακούς επαφής.</p>
+        </div>
+        <div class="serv reveal reveal-d3">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div>
+          <h4 data-el="Βυθοσκόπηση" data-en="Fundoscopy">Βυθοσκόπηση</h4>
+          <p data-el="Εξέταση βυθού του οφθαλμού για έγκαιρη διάγνωση παθήσεων." data-en="Examination of the eye fundus for early diagnosis of conditions.">Εξέταση βυθού του οφθαλμού για έγκαιρη διάγνωση παθήσεων.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTICS -->
+  <section class="diag">
+    <div class="wrap diag-grid">
+      <div class="diag-img reveal lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/unnamed-79.jpg">
+        <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/unnamed-79.jpg" alt="OCT διαγνωστική απεικόνιση">
+      </div>
+      <div class="diag-copy">
+        <div class="kicker reveal" style="color:#2a7fb8"><span class="l" style="background:#2a7fb8"></span><span data-el="Τεχνολογία" data-en="Technology">Τεχνολογία</span></div>
+        <h2 class="reveal reveal-d1" data-el="Διάγνωση με <em>ακρίβεια</em>" data-en="Diagnosis with <em>precision</em>">Διάγνωση με <em>ακρίβεια</em></h2>
+        <p class="reveal reveal-d2" data-el="Η σύγχρονη απεικονιστική τεχνολογία επιτρέπει την ανίχνευση παθήσεων του αμφιβληστροειδούς και του οπτικού νεύρου σε πρώιμο στάδιο, πριν εμφανιστούν συμπτώματα." data-en="Modern imaging technology allows the detection of retinal and optic-nerve conditions at an early stage, before symptoms appear.">Η σύγχρονη απεικονιστική τεχνολογία επιτρέπει την ανίχνευση παθήσεων του αμφιβληστροειδούς και του οπτικού νεύρου σε πρώιμο στάδιο, πριν εμφανιστούν συμπτώματα.</p>
+        <ul class="diag-list">
+          <li class="reveal reveal-d2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Οπτική τομογραφία συνοχής (OCT)" data-en="Optical Coherence Tomography (OCT)">Οπτική τομογραφία συνοχής (OCT)</span></li>
+          <li class="reveal reveal-d3"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Χαρτογράφηση πάχους αμφιβληστροειδούς" data-en="Retinal thickness mapping">Χαρτογράφηση πάχους αμφιβληστροειδούς</span></li>
+          <li class="reveal reveal-d4"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Ανάλυση οπτικού νεύρου & γλαυκώματος" data-en="Optic nerve & glaucoma analysis">Ανάλυση οπτικού νεύρου &amp; γλαυκώματος</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal" style="color:#2a7fb8"><span class="l" style="background:#2a7fb8"></span><span data-el="Ο χώρος" data-en="The space">Ο χώρος</span><span class="l" style="background:#2a7fb8"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Ένα σύγχρονο <em>ιατρείο</em>" data-en="A modern <em>practice</em>">Ένα σύγχρονο <em>ιατρείο</em></h2>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item gal-wide gal-tall reveal lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/f21d38c4-6cd1-48db-8741-8a52e17c204d.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/f21d38c4-6cd1-48db-8741-8a52e17c204d.jpg" alt="Εξεταστήριο"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item reveal reveal-d1 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/fef92bfb-65dc-4da8-b8ae-9b3748ee9089.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/fef92bfb-65dc-4da8-b8ae-9b3748ee9089.jpg" alt="Ιατρείο"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item reveal reveal-d2 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/unnamed-77.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/unnamed-77.jpg" alt="Εξοπλισμός"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item gal-wide reveal reveal-d2 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg" alt="Χώρος αναμονής"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item reveal reveal-d3 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/475b1a00-8e0e-4f7d-8d84-908eed371d50.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/475b1a00-8e0e-4f7d-8d84-908eed371d50.jpg" alt="Αναμονή"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span><span class="l"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Τι λένε οι <em>ασθενείς</em>" data-en="What <em>patients</em> say">Τι λένε οι <em>ασθενείς</em></h2>
+        <div class="rev-summary reveal reveal-d2">
+          <span class="rev-score">9.9</span>
+          <div class="meta"><span class="stars">★★★★★</span><span data-el="Βάσει 52 αξιολογήσεων" data-en="Based on 52 reviews">Βάσει 52 αξιολογήσεων</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-track-wrap reveal reveal-d2">
+      <div class="rev-track" id="papavReviews"></div>
+    </div>
+    <div class="rev-more reveal">
+      <a href="https://www.google.com/search?q=%CE%9E%CE%AD%CE%BD%CE%B9%CE%B1+%CE%A0%CE%B1%CF%80%CE%B1%CE%B2%CF%81%CE%B1%CE%BC%CE%AF%CE%B4%CE%BF%CF%85+%CE%9F%CF%86%CE%B8%CE%B1%CE%BB%CE%BC%CE%AF%CE%B1%CF%84%CF%81%CE%BF%CF%82+%CE%A0%CE%B5%CE%B9%CF%81%CE%B1%CE%B9%CE%AC%CF%82" target="_blank" rel="noopener"><span data-el="Διαβάστε περισσότερες αξιολογήσεις" data-en="Read more reviews">Διαβάστε περισσότερες αξιολογήσεις</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
+
+  <!-- CONTACT BAND -->
+  <section class="contact-band">
+    <div class="cb-inner">
+      <h2 data-el="Κλείστε το ραντεβού σας" data-en="Book your appointment">Κλείστε το ραντεβού σας</h2>
+      <p data-el="Δευτέρα – Παρασκευή, 16:00 – 21:00, κατόπιν ραντεβού. Επικοινωνήστε σήμερα." data-en="Monday – Friday, 16:00 – 21:00, by appointment. Get in touch today.">Δευτέρα – Παρασκευή, 16:00 – 21:00, κατόπιν ραντεβού. Επικοινωνήστε σήμερα.</p>
+      <div class="cb-actions">
+        <a class="btn-w" href="tel:+302104126386"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg>210 412 6386</a>
+        <a class="btn-o" href="mailto:xeniapapavra@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6" stroke-linecap="round"/></svg>xeniapapavra@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER papav -->
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fb-top">
+          <div class="fb-mark"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="none" stroke="#7ec5f0" stroke-opacity=".4"/><path d="M9,28 C16,18 40,18 47,28 C40,38 16,38 9,28 Z" fill="none" stroke="#7ec5f0" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="28" r="7" fill="#7ec5f0"/><circle cx="28" cy="28" r="2.6" fill="#0c2e36"/></svg></div>
+          <b data-el="Ξένια Παπαβραμίδου" data-en="Xenia Papavramidou">Ξένια Παπαβραμίδου</b>
+        </div>
+        <p data-el="Χειρουργός Οφθαλμίατρος στον Πειραιά. Ολοκληρωμένη φροντίδα όρασης για ενήλικες και παιδιά." data-en="Ophthalmic Surgeon in Piraeus. Complete vision care for adults and children.">Χειρουργός Οφθαλμίατρος στον Πειραιά. Ολοκληρωμένη φροντίδα όρασης για ενήλικες και παιδιά.</p>
+        <div class="foot-docs"><div class="foot-doc" onclick="goPage('home')"><div class="fd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#7ec5f0" stroke-width="1.8"><path d="M3 12l9-9 9 9M5 10v10h14V10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b data-el="Επιστροφή στο ιατρείο" data-en="Back to practice">Επιστροφή στο ιατρείο</b><span data-el="Δρυς & Παπαβραμίδου" data-en="Drys & Papavramidou">Δρυς &amp; Παπαβραμίδου</span></div></div></div>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z" stroke-linecap="round"/><circle cx="12" cy="10" r="2.5"/></svg><span data-el="Πραξιτέλους 121, Πειραιάς" data-en="121 Praxitelous St, Piraeus">Πραξιτέλους 121, Πειραιάς</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg><a href="tel:+302104126386">210 412 6386</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6" stroke-linecap="round"/></svg><a href="mailto:xeniapapavra@gmail.com">xeniapapavra@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Ωράριο" data-en="Hours">Ωράριο</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span data-el="Δευτέρα – Παρασκευή: 16:00 – 21:00" data-en="Monday – Friday: 16:00 – 21:00">Δευτέρα – Παρασκευή: 16:00 – 21:00</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8" stroke-linecap="round"/></svg><span data-el="Σάββατο & Κυριακή: Κλειστά" data-en="Saturday & Sunday: Closed">Σάββατο &amp; Κυριακή: Κλειστά</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-linecap="round"/></svg><span data-el="Κατόπιν ραντεβού" data-en="By appointment only">Κατόπιν ραντεβού</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="cp">© <span class="yr"></span> <span data-el="Ξένια Παπαβραμίδου, Χειρουργός Οφθαλμίατρος." data-en="Xenia Papavramidou, Ophthalmic Surgeon.">Ξένια Παπαβραμίδου, Χειρουργός Οφθαλμίατρος.</span></span>
+      <a class="advon" href="https://www.advonmedia.com" target="_blank" rel="noopener">Designed by <b>Advon Media</b></a>
+    </div>
+  </footer>
+</main>
+
+<!-- ====================================================== -->
+<!-- ======================  DRYS PAGE  =================== -->
+<!-- ====================================================== -->
+<main id="page-drys" class="page">
+
+  <section class="sub-hero">
+    <div class="sub-hero-bg nose" style="background-image:linear-gradient(110deg,rgba(6,24,46,.8),rgba(13,77,122,.4)),url('https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/nasal-cavity-left%20(1).jpg')" data-depth="0.12"></div>
+    <div class="sub-hero-inner">
+      <span class="back-link reveal-h" onclick="goPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg> <span data-el="Πίσω στο ιατρείο" data-en="Back to practice">Πίσω στο ιατρείο</span></span>
+      <div class="doc-tag reveal-h">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8,4 C6,8 5,12 6,16 C7,19 11,20 12,17" stroke="#9fd0d8" stroke-width="1.8" stroke-linecap="round"/><circle cx="8.5" cy="13" r="1.2" fill="#9fd0d8"/></svg>
+        <span data-el="Χειρουργός Ωτορινολαρυγγολόγος" data-en="ENT Surgeon">Χειρουργός Ωτορινολαρυγγολόγος</span>
+      </div>
+      <h1>
+        <span class="line"><span data-el="Σταμάτιος" data-en="Stamatios">Σταμάτιος</span></span>
+        <span class="line"><span data-el="Δρυς" data-en="Drys">Δρυς</span> <span style="font-size:.4em;vertical-align:middle;color:rgba(255,255,255,.55);letter-spacing:.1em">MD</span></span>
+      </h1>
+      <p class="lead reveal-h" data-el="Ήπια, αναλυτική και ανθρώπινη φροντίδα ωτορινολαρυγγολογίας — με υπομονή και σαφήνεια σε κάθε εξέταση." data-en="Gentle, thorough and human ENT care — with patience and clarity at every examination.">Ήπια, αναλυτική και ανθρώπινη φροντίδα ωτορινολαρυγγολογίας — με υπομονή και σαφήνεια σε κάθε εξέταση.</p>
+      <div class="hrate reveal-h"><span class="stars">★★★★★</span><b>5.0</b><span data-el="· Google αξιολογήσεις" data-en="· Google reviews">· Google αξιολογήσεις</span></div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <div class="wrap bio-grid">
+      <div class="bio-photo reveal">
+        <div class="deco"></div>
+        <div class="frame lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/%CE%B4%CF%81%CF%85%CF%83-%CF%83%CF%84%CE%B1%CE%BC%CE%B1%CF%84%CE%B9%CE%BF%CF%83.png">
+          <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/δρυσ-σταματιοσ.png" alt="Σταμάτιος Δρυς" style="object-position:center">
+        </div>
+        <div class="bio-name-tag">
+          <b data-el="Σταμάτιος Δρυς MD" data-en="Stamatios Drys MD">Σταμάτιος Δρυς MD</b>
+          <span style="color:#1f6f7e" data-el="ΧΕΙΡΟΥΡΓΟΣ ΩΡΛ" data-en="ENT SURGEON">ΧΕΙΡΟΥΡΓΟΣ ΩΡΛ</span>
+        </div>
+      </div>
+      <div class="bio-copy">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Βιογραφικό" data-en="About">Βιογραφικό</span></div>
+        <h2 class="reveal reveal-d1" data-el="Φροντίδα με <em>υπομονή</em> & γνώση" data-en="Care with <em>patience</em> & expertise">Φροντίδα με <em>υπομονή</em> &amp; γνώση</h2>
+        <p class="reveal reveal-d2" data-el="Ο Σταμάτιος Δρυς είναι Χειρουργός Ωτορινολαρυγγολόγος με συνεργασία στο Νοσοκομείο Ερρίκος Ντυνάν, E.N.H.C. Διακρίνεται για την ήπια, αναλυτική προσέγγισή του και τη φροντίδα να κατανοεί πλήρως ο ασθενής τι του συμβαίνει." data-en="Stamatios Drys is an ENT Surgeon affiliated with the Henry Dunant Hospital, E.N.H.C. He is known for his gentle, analytical approach and his care that the patient fully understands their condition.">Ο Σταμάτιος Δρυς είναι Χειρουργός Ωτορινολαρυγγολόγος με συνεργασία στο Νοσοκομείο Ερρίκος Ντυνάν, E.N.H.C. Διακρίνεται για την ήπια, αναλυτική προσέγγισή του και τη φροντίδα να κατανοεί πλήρως ο ασθενής τι του συμβαίνει.</p>
+        <p class="reveal reveal-d2" data-el="Από την ενδοσκόπηση παραρρινίων κόλπων έως την εξέταση φωνητικών χορδών, στόχος του είναι μια εμπειρία όσο το δυνατόν πιο άνετη και ανώδυνη για κάθε ασθενή." data-en="From sinus endoscopy to vocal-cord examination, his goal is an experience that is as comfortable and painless as possible for every patient.">Από την ενδοσκόπηση παραρρινίων κόλπων έως την εξέταση φωνητικών χορδών, στόχος του είναι μια εμπειρία όσο το δυνατόν πιο άνετη και ανώδυνη για κάθε ασθενή.</p>
+        <div class="bio-creds">
+          <div class="cred reveal reveal-d2"><span class="cn">01</span><div><b data-el="Νοσοκομείο Ερρίκος Ντυνάν" data-en="Henry Dunant Hospital">Νοσοκομείο Ερρίκος Ντυνάν</b><span data-el="Συνεργασία · E.N.H.C." data-en="Affiliation · E.N.H.C.">Συνεργασία · E.N.H.C.</span></div></div>
+          <div class="cred reveal reveal-d3"><span class="cn">02</span><div><b data-el="Ενδοσκόπηση" data-en="Endoscopy">Ενδοσκόπηση</b><span data-el="Παραρρινίων κόλπων, λάρυγγα & φωνητικών χορδών" data-en="Sinuses, larynx & vocal cords">Παραρρινίων κόλπων, λάρυγγα &amp; φωνητικών χορδών</span></div></div>
+          <div class="cred reveal reveal-d4"><span class="cn">03</span><div><b data-el="Ανθρώπινη προσέγγιση" data-en="Human approach">Ανθρώπινη προσέγγιση</b><span data-el="Ήπια μέθοδος εξέτασης, με υπομονή & ευγένεια" data-en="Gentle examination method, with patience & kindness">Ήπια μέθοδος εξέτασης, με υπομονή &amp; ευγένεια</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (dark) -->
+  <section class="services nose-srv">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</span><span class="l"></span></div>
+        <h2 class="title reveal reveal-d1" style="color:#fff" data-el="Ωτορινολαρυγγολογική <em>φροντίδα</em>" data-en="Complete <em>ENT care</em>">Ωτορινολαρυγγολογική <em>φροντίδα</em></h2>
+      </div>
+      <div class="serv-grid">
+        <div class="serv reveal reveal-d1">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 14a6 6 0 1110-4c0 3-2 4-2 6a2 2 0 01-4 0" stroke-linecap="round"/><circle cx="9" cy="10" r="1.2" fill="currentColor"/></svg></div>
+          <h4 data-el="Πάθήσεις αυτιού" data-en="Ear conditions">Παθήσεις αυτιού</h4>
+          <p data-el="Διάγνωση και αντιμετώπιση παθήσεων ακοής και ισορροπίας." data-en="Diagnosis and treatment of hearing and balance conditions.">Διάγνωση και αντιμετώπιση παθήσεων ακοής και ισορροπίας.</p>
+        </div>
+        <div class="serv reveal reveal-d2">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 3c-1 4-3 7-3 11a5 5 0 006 5c1-2 3-2 4-2" stroke-linecap="round"/><circle cx="9.5" cy="13" r="1.1" fill="currentColor"/></svg></div>
+          <h4 data-el="Ενδοσκόπηση παραρρινίων" data-en="Sinus endoscopy">Ενδοσκόπηση παραρρινίων</h4>
+          <p data-el="Ανώδυνη ενδοσκόπηση παραρρινίων κόλπων με ήπια μέθοδο." data-en="Painless sinus endoscopy with a gentle technique.">Ανώδυνη ενδοσκόπηση παραρρινίων κόλπων με ήπια μέθοδο.</p>
+        </div>
+        <div class="serv reveal reveal-d3">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2a3 3 0 013 3v6a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke-linecap="round"/></svg></div>
+          <h4 data-el="Λάρυγγας & φωνητικές χορδές" data-en="Larynx & vocal cords">Λάρυγγας &amp; φωνητικές χορδές</h4>
+          <p data-el="Εξέταση λάρυγγα και φωνητικών χορδών για προβλήματα φωνής." data-en="Examination of the larynx and vocal cords for voice problems.">Εξέταση λάρυγγα και φωνητικών χορδών για προβλήματα φωνής.</p>
+        </div>
+        <div class="serv reveal reveal-d1">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M8 4C6 8 5 12 6 16c1 3 5 4 6 1" stroke-linecap="round"/><circle cx="8.5" cy="13" r="1.2" fill="currentColor"/></svg></div>
+          <h4 data-el="Παθήσεις μύτης" data-en="Nasal conditions">Παθήσεις μύτης</h4>
+          <p data-el="Ρινική απόφραξη, αλλεργίες και παθήσεις του ρινικού διαφράγματος." data-en="Nasal obstruction, allergies and septum conditions.">Ρινική απόφραξη, αλλεργίες και παθήσεις του ρινικού διαφράγματος.</p>
+        </div>
+        <div class="serv reveal reveal-d2">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/></svg></div>
+          <h4 data-el="Παιδιατρική ΩΡΛ" data-en="Pediatric ENT">Παιδιατρική ΩΡΛ</h4>
+          <p data-el="Εξειδικευμένη, ευγενική φροντίδα ΩΡΛ για παιδιά." data-en="Specialized, kind ENT care for children.">Εξειδικευμένη, ευγενική φροντίδα ΩΡΛ για παιδιά.</p>
+        </div>
+        <div class="serv reveal reveal-d3">
+          <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke-linecap="round"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <h4 data-el="Χειρουργικές επεμβάσεις" data-en="Surgical procedures">Χειρουργικές επεμβάσεις</h4>
+          <p data-el="Χειρουργική αντιμετώπιση παθήσεων ώτων, ρινός και λάρυγγα." data-en="Surgical treatment of ear, nose and throat conditions.">Χειρουργική αντιμετώπιση παθήσεων ώτων, ρινός και λάρυγγα.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTICS -->
+  <section class="diag">
+    <div class="wrap diag-grid">
+      <div class="diag-copy">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Προσέγγιση" data-en="Approach">Προσέγγιση</span></div>
+        <h2 class="reveal reveal-d1" data-el="Ήπια & <em>ανώδυνη</em> εξέταση" data-en="Gentle & <em>painless</em> examination">Ήπια &amp; <em>ανώδυνη</em> εξέταση</h2>
+        <p class="reveal reveal-d2" data-el="Πολλοί ασθενείς φοβούνται την ενδοσκόπηση. Με τη μέθοδο και την υπομονή του Σταμάτιου Δρυ, η διαδικασία γίνεται τόσο ήπια που σχεδόν δεν γίνεται αντιληπτή — όπως αναφέρουν οι ίδιοι οι ασθενείς." data-en="Many patients fear endoscopy. With Stamatios Drys's technique and patience, the procedure becomes so gentle it is barely noticeable — as patients themselves report.">Πολλοί ασθενείς φοβούνται την ενδοσκόπηση. Με τη μέθοδο και την υπομονή του Σταμάτιου Δρυ, η διαδικασία γίνεται τόσο ήπια που σχεδόν δεν γίνεται αντιληπτή — όπως αναφέρουν οι ίδιοι οι ασθενείς.</p>
+        <ul class="diag-list">
+          <li class="reveal reveal-d2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Αναλυτική επεξήγηση κάθε διάγνωσης" data-en="Detailed explanation of every diagnosis">Αναλυτική επεξήγηση κάθε διάγνωσης</span></li>
+          <li class="reveal reveal-d3"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Ήπια ενδοσκοπική τεχνική" data-en="Gentle endoscopic technique">Ήπια ενδοσκοπική τεχνική</span></li>
+          <li class="reveal reveal-d4"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-el="Υπομονή & ευγένεια με κάθε ασθενή" data-en="Patience & kindness with every patient">Υπομονή &amp; ευγένεια με κάθε ασθενή</span></li>
+        </ul>
+      </div>
+      <div class="diag-img reveal reveal-d1 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/nasal-cavity-left%20(1).jpg">
+        <img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/nasal-cavity-left%20(1).jpg" alt="Ανατομία ρινικής κοιλότητας">
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Ο χώρος" data-en="The space">Ο χώρος</span><span class="l"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Ένα φιλόξενο <em>ιατρείο</em>" data-en="A welcoming <em>practice</em>">Ένα φιλόξενο <em>ιατρείο</em></h2>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item gal-wide gal-tall reveal lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/93a719b0-c983-43bb-a7a1-235bc4961612.jpg" alt="Χώρος αναμονής"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item reveal reveal-d1 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/475b1a00-8e0e-4f7d-8d84-908eed371d50.jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/475b1a00-8e0e-4f7d-8d84-908eed371d50.jpg" alt="Αναμονή"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+        <div class="gal-item reveal reveal-d2 lb-trigger" data-src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/20240422_171530%20(2).jpg"><img src="https://raw.githubusercontent.com/agelmet/eyeorl/54e265c711ca7bb2f880c43a7f334214db286c18/20240422_171530%20(2).jpg" alt="Είσοδος ιατρείου"><span class="zoom-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" stroke-linecap="round"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="l"></span><span data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span><span class="l"></span></div>
+        <h2 class="title reveal reveal-d1" data-el="Τι λένε οι <em>ασθενείς</em>" data-en="What <em>patients</em> say">Τι λένε οι <em>ασθενείς</em></h2>
+        <div class="rev-summary reveal reveal-d2">
+          <span class="rev-score">5.0</span>
+          <div class="meta"><span class="stars">★★★★★</span><span data-el="Αξιολογήσεις Google" data-en="Google reviews">Αξιολογήσεις Google</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-track-wrap reveal reveal-d2">
+      <div class="rev-track" id="drysReviews"></div>
+    </div>
+    <div class="rev-more reveal">
+      <a href="https://www.google.com/search?q=%CE%A3%CF%84%CE%B1%CE%BC%CE%AC%CF%84%CE%B9%CE%BF%CF%82+%CE%94%CF%81%CF%85%CF%82+%C6%89%CF%81%CE%BB+%CE%A0%CE%B5%CE%B9%CF%81%CE%B1%CE%B9%CE%AC%CF%82" target="_blank" rel="noopener"><span data-el="Διαβάστε περισσότερες αξιολογήσεις" data-en="Read more reviews">Διαβάστε περισσότερες αξιολογήσεις</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
+
+  <!-- CONTACT BAND -->
+  <section class="contact-band">
+    <div class="cb-inner">
+      <h2 data-el="Κλείστε το ραντεβού σας" data-en="Book your appointment">Κλείστε το ραντεβού σας</h2>
+      <p data-el="Δευτέρα – Παρασκευή, 16:00 – 21:00, κατόπιν ραντεβού. Επικοινωνήστε σήμερα." data-en="Monday – Friday, 16:00 – 21:00, by appointment. Get in touch today.">Δευτέρα – Παρασκευή, 16:00 – 21:00, κατόπιν ραντεβού. Επικοινωνήστε σήμερα.</p>
+      <div class="cb-actions">
+        <a class="btn-w" href="tel:+302104126388"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg>210 412 6388</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER drys -->
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fb-top">
+          <div class="fb-mark"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="none" stroke="#9fd0d8" stroke-opacity=".4"/><path d="M20,8 C14,18 12,30 15,40 C18,47 30,48 30,40" fill="none" stroke="#9fd0d8" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="32" r="2.4" fill="#9fd0d8"/></svg></div>
+          <b data-el="Σταμάτιος Δρυς" data-en="Stamatios Drys">Σταμάτιος Δρυς</b>
+        </div>
+        <p data-el="Χειρουργός Ωτορινολαρυγγολόγος στον Πειραιά. Ανθρώπινη, αναλυτική φροντίδα ώτων, ρινός & λάρυγγα." data-en="ENT Surgeon in Piraeus. Human, analytical care for ear, nose & throat.">Χειρουργός Ωτορινολαρυγγολόγος στον Πειραιά. Ανθρώπινη, αναλυτική φροντίδα ώτων, ρινός &amp; λάρυγγα.</p>
+        <div class="foot-docs"><div class="foot-doc" onclick="goPage('home')"><div class="fd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#9fd0d8" stroke-width="1.8"><path d="M3 12l9-9 9 9M5 10v10h14V10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b data-el="Επιστροφή στο ιατρείο" data-en="Back to practice">Επιστροφή στο ιατρείο</b><span data-el="Δρυς & Παπαβραμίδου" data-en="Drys & Papavramidou">Δρυς &amp; Παπαβραμίδου</span></div></div></div>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z" stroke-linecap="round"/><circle cx="12" cy="10" r="2.5"/></svg><span data-el="Πραξιτέλους 121, Πειραιάς" data-en="121 Praxitelous St, Piraeus">Πραξιτέλους 121, Πειραιάς</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg><a href="tel:+302104126388">210 412 6388</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-el="Ωράριο" data-en="Hours">Ωράριο</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span data-el="Δευτέρα – Παρασκευή: 16:00 – 21:00" data-en="Monday – Friday: 16:00 – 21:00">Δευτέρα – Παρασκευή: 16:00 – 21:00</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8" stroke-linecap="round"/></svg><span data-el="Σάββατο & Κυριακή: Κλειστά" data-en="Saturday & Sunday: Closed">Σάββατο &amp; Κυριακή: Κλειστά</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-linecap="round"/></svg><span data-el="Κατόπιν ραντεβού" data-en="By appointment only">Κατόπιν ραντεβού</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="cp">© <span class="yr"></span> <span data-el="Σταμάτιος Δρυς, Χειρουργός Ωτορινολαρυγγολόγος." data-en="Stamatios Drys, ENT Surgeon.">Σταμάτιος Δρυς, Χειρουργός Ωτορινολαρυγγολόγος.</span></span>
+      <a class="advon" href="https://www.advonmedia.com" target="_blank" rel="noopener">Designed by <b>Advon Media</b></a>
+    </div>
+  </footer>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-hint" data-el="Κλικ οπουδήποτε για κλείσιμο" data-en="Click anywhere to close">Κλικ οπουδήποτε για κλείσιμο</div>
+</div>
+
+<script>
+/* ============ PRELOADER ============ */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('preloader').classList.add('done');
+    document.body.classList.remove('locked');runHero();},2400);
+});
+document.body.classList.add('locked');
+
+/* ============ LANGUAGE ============ */
+function setLang(l){
+  document.documentElement.lang=l;
+  try{localStorage.setItem('site_lang',l);}catch(e){}
+  document.getElementById('btnEl').classList.toggle('active',l==='el');
+  document.getElementById('btnEn').classList.toggle('active',l==='en');
+  // Single-element swap pattern: every [data-el][data-en] node is a text leaf.
+  document.querySelectorAll('[data-el][data-en]').forEach(el=>{
+    const v=el.getAttribute('data-'+l);
+    if(v===null)return;
+    if(/[<&]/.test(v)) el.innerHTML=v;   // rich values (em / entities)
+    else el.textContent=v;               // plain text
+  });
+}
+
+/* ============ PAGE ROUTER ============ */
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+id);
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  closeMenu();
+  // reset & re-run reveals for the new page
+  resetReveals(el);
+  setTimeout(()=>{observeReveals();runSubHero(el);},60);
+  setNavSolid(id!=='home');
+  updateNavState();
+}
+function scrollToId(id){
+  if(!document.getElementById('page-home').classList.contains('active')){goPage('home');}
+  setTimeout(()=>{const t=document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth'});},120);
+}
+
+/* ============ NAV STATE ============ */
+const nav=document.getElementById('nav');
+let navSolidForced=false;
+function setNavSolid(v){navSolidForced=v;updateNavState();}
+function updateNavState(){
+  const scrolled=window.scrollY>40;
+  nav.classList.toggle('scrolled',scrolled);
+  nav.classList.toggle('solid',navSolidForced&&!scrolled? false:navSolidForced);
+  // when on a subpage hero (dark), keep light text until scrolled; treat like home hero
+}
+window.addEventListener('scroll',()=>{
+  updateNavState();
+  const h=document.documentElement;
+  const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progress').style.width=sc+'%';
+},{passive:true});
+
+/* ============ MENU ============ */
+const burger=document.getElementById('burger');
+const drawerClose=document.getElementById('drawerClose');
+function openMenu(){document.body.classList.add('menu-open','locked')}
+function closeMenu(){document.body.classList.remove('menu-open');if(document.getElementById('preloader').classList.contains('done'))document.body.classList.remove('locked')}
+burger.addEventListener('click',()=>{document.body.classList.contains('menu-open')?closeMenu():openMenu()});
+drawerClose.addEventListener('click',closeMenu);
+
+/* ============ REVEAL OBSERVER ============ */
+let revObserver;
+function observeReveals(){
+  if(revObserver)revObserver.disconnect();
+  revObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObserver.unobserve(e.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.page.active .reveal:not(.in)').forEach(el=>revObserver.observe(el));
+}
+function resetReveals(scope){
+  scope.querySelectorAll('.reveal').forEach(el=>el.classList.remove('in'));
+}
+
+/* ============ HERO INTRO ANIMATION ============ */
+function runHero(){
+  const lines=document.querySelectorAll('#page-home .hero h1 .line span');
+  lines.forEach((s,i)=>setTimeout(()=>{s.style.transition='transform 1s cubic-bezier(.16,1,.3,1)';s.style.transform='translateY(0)';},i*140));
+  const eb=document.getElementById('heroEb'),sub=document.getElementById('heroSub');
+  setTimeout(()=>{eb.style.transition='.9s cubic-bezier(.16,1,.3,1)';eb.style.opacity=1;eb.style.transform='none';},120);
+  setTimeout(()=>{sub.style.transition='.9s cubic-bezier(.16,1,.3,1)';sub.style.opacity=1;sub.style.transform='none';},460);
+  ['hc1','hc2'].forEach((id,i)=>setTimeout(()=>{const c=document.getElementById(id);c.style.transition='.9s cubic-bezier(.16,1,.3,1)';c.style.opacity=1;c.style.transform='none';},620+i*140));
+  observeReveals();
+}
+
+/* ============ SUB-HERO ANIMATION ============ */
+function runSubHero(scope){
+  if(scope.id==='page-home')return;
+  const lines=scope.querySelectorAll('.sub-hero h1 .line span');
+  lines.forEach((s,i)=>{s.style.transform='translateY(110%)';
+    setTimeout(()=>{s.style.transition='transform 1s cubic-bezier(.16,1,.3,1)';s.style.transform='translateY(0)';},150+i*130);});
+  scope.querySelectorAll('.reveal-h').forEach((el,i)=>{
+    el.style.opacity=0;el.style.transform=el.classList.contains('back-link')?'translateX(10px)':'translateY(16px)';
+    setTimeout(()=>{el.style.transition='.9s cubic-bezier(.16,1,.3,1)';el.style.opacity=1;el.style.transform='none';},120+i*120);
+  });
+}
+
+/* ============ PARALLAX ============ */
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(!ticking){requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    document.querySelectorAll('.page.active [data-depth]').forEach(el=>{
+      const d=parseFloat(el.getAttribute('data-depth'));
+      el.style.transform='scale(1.08) translateY('+(y*d)+'px)';
+    });
+    ticking=false;
+  });ticking=true;}
+},{passive:true});
+
+/* ============ LIGHTBOX ============ */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+function openLB(src){lbImg.src=src;lb.classList.add('open');document.body.classList.add('locked');}
+function closeLB(){lb.classList.remove('open');if(!document.body.classList.contains('menu-open'))document.body.classList.remove('locked');}
+document.addEventListener('click',(e)=>{
+  const t=e.target.closest('.lb-trigger');
+  if(t){const src=t.getAttribute('data-src');if(src)openLB(src);}
+});
+document.getElementById('lbClose').addEventListener('click',(e)=>{e.stopPropagation();closeLB();});
+lb.addEventListener('click',closeLB);
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){closeLB();closeMenu();}});
+
+/* ============ REVIEWS DATA ============ */
+const papavData=[
+  ["Άρης","Εξαιρετική στο επάγγελμά της. Την προτείνω ανεπιφύλακτα.","Exceptional at her profession. I recommend her wholeheartedly."],
+  ["Αποστόλης","Συνεπής στο ραντεβού και πολύ ευγενική!","Punctual with appointments and very kind!"],
+  ["Βασιλεία","Πρώτη φορά επισκεφθήκαμε το ιατρείο, μας δέχτηκε άμεσα και ήταν τυπική στο ραντεβού. Επαγγελματίας, επεξηγηματική με ευγένεια και φιλική προσέγγιση στο παιδί!","Our first visit — she saw us promptly and was punctual. Professional, thorough, kind and friendly with the child!"],
+  ["Σοφία","Έμπειρη, φιλική, εμπνέει εμπιστοσύνη.","Experienced, friendly, inspires trust."],
+  ["Άννα","Η γιατρός, παρόλο που μας έβλεπε πρώτη φορά, ήταν ευγενική, φιλική και βοηθητική στο πρόβλημα.","Though it was our first visit, the doctor was kind, friendly and helpful with the problem."],
+  ["Σπύρος","Εκτενής εξέταση του παιδιού μου. Ήρεμη και αναλυτική στη διάγνωση. Θα την εμπιστευτώ ξανά.","Thorough examination of my child. Calm and analytical in diagnosis. I will trust her again."],
+  ["Antonis","Έγινε διαθλαστικός έλεγχος και βυθοσκόπηση.","A refraction test and fundoscopy were performed."],
+  ["Ιωάννης","Ασχολήθηκε σχολαστικά. Κέρδισε την εμπιστοσύνη μου. Έλυσε το πρόβλημά μου.","She was meticulous. She earned my trust and solved my problem."],
+  ["Rita","Εξαιρετική γιατρός — έκανε πλήρη παιδιατρικό έλεγχο στο μικρό μου, πολύ γλυκιά, επαγγελματίας και κατανοητική. Ευχαριστώ.","Great doctor — she did a full pediatric checkup for my toddler, very sweet, professional and understanding."],
+  ["Δέσποινα","Εμπεριστατωμένη προσέγγιση και καλοσυνάτη.","A thorough approach and kind-hearted."],
+  ["Όλγα","Πολύ καλή και ευγενική γιατρός, απαντά σε όλες τις απορίες. Τη συνιστώ ανεπιφύλακτα.","A very good and kind doctor who answers every question. I recommend her wholeheartedly."],
+  ["Ασημίνα","Πολύ καλή γιατρός, ευγενική με το χαμόγελο στα χείλη! Προτείνω ανεπιφύλακτα!","A very good doctor, kind and always smiling! I recommend her without reservation!"],
+  ["Άννα","Εξαιρετική επιστήμονας, και με τα παιδιά μου και με εμένα. Συγχαρητήρια για την υπομονή και την κατάρτισή της! Άριστη σε όλα!","An excellent professional, with both my children and me. Bravo for her patience and expertise! Excellent in everything!"],
+  ["Περικλής","Πολύ ευγενική κυρία, πρόθυμη και επεξηγηματική για την περίπτωσή μου.","A very kind lady, willing and thorough about my case."],
+  ["Kerry","Επαγγελματίας. Έκανε ενδελεχή έλεγχο. Είχαμε πλήρη ενημέρωση κατόπιν του ελέγχου.","A professional. She did a thorough examination and gave us a full briefing afterwards."],
+  ["Ελένη","Εξαιρετική ιατρός, μου άρεσε πολύ.","An excellent doctor, I liked her very much."],
+  ["Anastasia","Ευγενέστατη, γλυκύτατη και εξαιρετική επαγγελματίας!","Most kind, sweet and an excellent professional!"],
+  ["Melina","Εξαιρετική γιατρός, πήγα πρώτη φορά και το ραντεβού ήταν πολύ αποτελεσματικό!","Excellent doctor — my first visit and the appointment was very effective!"],
+  ["Aniko","Είχα κάποια θέματα με το βλέφαρό μου και την επισκέφθηκα δύο φορές. Πολύ υπομονετική και ευγενική, μου εξήγησε τα πάντα. Άριστη δουλειά, τη συστήνω σε όλους.","I had some issues with my eyelid and visited twice. Very patient and kind, she explained everything. Excellent work, I recommend her to everyone."],
+  ["Αντώνης","Ήταν πολύ ευγενική, προσιτή και σου έδινε πληροφορίες.","She was very kind, approachable and informative."]
+];
+const drysData=[
+  ["Marcy Simon","Έχοντας δει ήδη 2 ΩΡΛ, κατέληξα στον κο Δρυ. Εξαιρετικά υπομονετικός και αναλυτικός, μου εξήγησε τι μου συμβαίνει. Χρειάστηκε ενδοσκόπηση παραρρινίων, λάρυγγα και φωνητικών χορδών — που γνώριζα ως επώδυνη — αλλά ήταν τόσο ήπιος που σχεδόν δεν κατάλαβα το ενδοσκόπιο. Τον συστήνω ανεπιφύλακτα.","After seeing 2 other ENTs, I ended up with Dr. Drys. Extremely patient and thorough, he explained what was happening. I needed a sinus, larynx and vocal-cord endoscopy — which I knew to be painful — but he was so gentle I barely noticed the scope. Highly recommended."],
+  ["Χαρούλα","Πολύ ευγενικός, ήρεμος και επεξηγηματικός γιατρός!","A very kind, calm and clear doctor!"],
+  ["Γιάννης Α.","Εξαιρετικός γιατρός, πάρα πολύ ευγενικός, προσεκτικός και υποστηρικτικός, με μεγάλη υπομονή ώστε να καταλάβει ο ασθενής τι ακριβώς του συμβαίνει. Συγχαρητήρια!","An excellent doctor, extremely kind, careful and supportive, with great patience so the patient understands exactly what is happening. Congratulations!"],
+  ["Μελπομένη","Εξαιρετικός επιστήμονας, καθησυχαστικός και γνώστης, με πολλή οργάνωση και απαλή μέθοδο στην εξέταση.","An excellent professional, reassuring and knowledgeable, very organized with a gentle examination method."],
+  ["Vicky Gana","Εξαιρετικός γιατρός, απόλυτα καταρτισμένος, πλήρως κατατοπιστικός, σαφής, με μοναδική ευγένεια, υπομονή και ήθος. Τον συνιστώ ανεπιφύλακτα.","An excellent doctor, fully trained, informative and clear, with unique kindness, patience and integrity. I recommend him wholeheartedly."],
+  ["SNC Hellas","Ο γιατρός είναι καταπληκτικός και ως άνθρωπος και ως επιστήμονας. Βρήκε κάτι που πολλοί άλλοι δεν μπόρεσαν και μου έδωσε οριστική λύση. Το συνιστώ ανεπιφύλακτα.","The doctor is amazing both as a person and a professional. He found something many others couldn't and gave me a definitive solution. Highly recommended."],
+  ["Λένα","Εξαιρετικός, πήγα τη μητέρα μου. Ακριβής στη διάγνωση.","Excellent — I took my mother. Precise in diagnosis."],
+  ["Αλέκος","Έχοντας επισκεφθεί άλλους ΩΡΛ στο παρελθόν, ο κος Δρυς είναι από τους καλύτερους — ιατρός και άνθρωπος. Σας ευχαριστώ.","Having visited other ENTs before, Dr. Drys is among the best — as a doctor and a person. Thank you."],
+  ["Δήμος","Ο κύριος Δρυς αποπνέει εμπιστοσύνη και σιγουριά, κατέχει πλήρη γνώση του αντικειμένου του και ξεχωρίζει για την ανθρώπινη στάση του σε όλα τα επίπεδα. Εξαιρετικός γιατρός!","Dr. Drys radiates trust and confidence, has full command of his field and stands out for his human approach at every level. An excellent doctor!"],
+  ["Δήμητρα","Εξαιρετικός γιατρός. Έχει απίστευτη ευγένεια και υπομονή με τα παιδιά!","An excellent doctor. He has incredible kindness and patience with children!"],
+  ["Γιάννης Π.","Εξαιρετικός γιατρός, αναλυτικός, με υπομονή και ευγένεια.","An excellent, thorough doctor, with patience and kindness."]
+];
+function avatar(name){return name.trim().charAt(0).toUpperCase();}
+function buildReviews(containerId,data){
+  const c=document.getElementById(containerId);if(!c)return;
+  const lang=document.documentElement.lang;
+  const set=[...data,...data]; // duplicate for seamless loop
+  c.innerHTML=set.map(r=>`
+    <div class="rev">
+      <div class="top">
+        <div class="ava">${avatar(r[0])}</div>
+        <div class="who"><b>${r[0]}</b><div><span class="gstars">★★★★★</span><span class="score10">10.0</span></div></div>
+      </div>
+      <p data-el="${r[1].replace(/"/g,'&quot;')}" data-en="${r[2].replace(/"/g,'&quot;')}">${lang==='en'?r[2]:r[1]}</p>
+    </div>`).join('');
+}
+function refreshReviews(){buildReviews('papavReviews',papavData);buildReviews('drysReviews',drysData);}
+
+/* override setLang to also refresh reviews text */
+const _setLang=setLang;
+setLang=function(l){_setLang(l);
+  document.querySelectorAll('.rev p[data-el]').forEach(p=>{p.textContent=p.getAttribute('data-'+l);});
+};
+
+/* ============ INIT ============ */
+function init(){
+  refreshReviews();
+  let lang='el';
+  try{const s=localStorage.getItem('site_lang');if(s==='en'||s==='el')lang=s;}catch(e){}
+  setLang(lang);
+  observeReveals();
+  updateNavState();
+  const y=new Date().getFullYear();
+  document.getElementById('yr1').textContent=y;
+  document.querySelectorAll('.yr').forEach(e=>e.textContent=y);
+}
+init();
+</script>
+</body>
+</html>
